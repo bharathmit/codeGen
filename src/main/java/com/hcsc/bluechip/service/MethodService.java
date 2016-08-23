@@ -1,5 +1,8 @@
 package com.hcsc.bluechip.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +22,15 @@ public class MethodService {
 		methodDetailsJPA.saveAndFlush(entityObj);
 		reqObject.setId(entityObj.getId());
 		return reqObject;
+	}
+	
+	public List<MethodDetailsDto> getMethodName(String methodName){
+		List<MethodDetails> entityList = methodDetailsJPA.findByMethodName(methodName);		
+		List<MethodDetailsDto> returnList=new ArrayList<MethodDetailsDto>();
+		for(MethodDetails entity : entityList){
+			MethodDetailsDto methodDto=(MethodDetailsDto) ModelEntityMapper.converObjectToPoJo(entity, MethodDetailsDto.class);
+			returnList.add(methodDto);
+		}
+		return returnList;		
 	}
 }

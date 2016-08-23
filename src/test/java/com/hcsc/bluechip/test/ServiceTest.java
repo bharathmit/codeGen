@@ -1,5 +1,7 @@
 package com.hcsc.bluechip.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +33,9 @@ public class ServiceTest {
 		System.out.println("Object" + reqObject.getDetails() + reqObject.getMethodName() + reqObject.getId());
 	}
 	
+	@Test
+	public void getMethodTest(){		
+		List<MethodDetailsDto> returnList = methodService.getMethodName("Bharath");
+		System.out.println("Object" + returnList.get(0).getMethodName());
+	}
 }
